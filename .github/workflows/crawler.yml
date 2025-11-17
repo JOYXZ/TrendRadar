@@ -64,12 +64,14 @@ jobs:
           GITHUB_ACTIONS: true
         run: python main.py
 
-      - name: 移动报告文件到根目录
+      # =========================================================
+      # ⬇️ 新增诊断步骤：用于查找报告文件的确切路径 ⬇️
+      - name: 诊断：列出 output 文件夹内容
         run: |
-          # 将 output/index.html 移动到仓库的根目录
-          mv output/index.html index.html
-          # 删除空的 output 文件夹
-          rmdir output
+          echo "正在查找 output/ 文件夹内的文件..."
+          ls -R output
+      # ⬆️ 诊断步骤结束 ⬆️
+      # =========================================================
 
       - name: Commit and push if changes
         run: |
