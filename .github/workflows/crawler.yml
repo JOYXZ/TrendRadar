@@ -64,6 +64,13 @@ jobs:
           GITHUB_ACTIONS: true
         run: python main.py
 
+      - name: 移动报告文件到根目录
+        run: |
+          # 将 output/index.html 移动到仓库的根目录
+          mv output/index.html index.html
+          # 删除空的 output 文件夹
+          rmdir output
+
       - name: Commit and push if changes
         run: |
           git config --global user.name 'GitHub Actions'
